@@ -1,0 +1,9 @@
+.favorites-container {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.favorites-empty {
+  text-align: center;
+  margin-top: 32px;
+}
