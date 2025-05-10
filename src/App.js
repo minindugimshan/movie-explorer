@@ -1,36 +1,65 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { MovieProvider } from './context/MovieContext';
 import { ThemeProvider, ThemeContext } from './context/ThemeContext';
+import { AuthContext, AuthProvider } from './context/AuthContext';
 import Home from './pages/Home';
 import MoviePage from './pages/MoviePage';
 import Favorites from './pages/Favorites';
+import Login from './pages/Login';
 import Navbar from './components/Navbar';
 
-function App() {
+const App = () => {
   return (
     <Router>
-      <ThemeProvider>
-        <MovieProvider>
-          <MuiThemeWrapper>
-            <CssBaseline />
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/movie/:id" element={<MoviePage />} />
-              <Route path="/favorites" element={<Favorites />} />
-            </Routes>
-          </MuiThemeWrapper>
-        </MovieProvider>
-      </ThemeProvider>
+      <AuthProvider>
+        <ThemeProvider>
+          <MovieProvider>
+            <MuiThemeWrapper>
+              <CssBaseline />
+              <Navbar />
+              <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+                <Route path="/movie/:id" element={<ProtectedRoute><MoviePage /></ProtectedRoute>} />
+                <Route path="/favorites" element={<ProtectedRoute><Favorites /></ProtectedRoute>} />
+                <Route path="*" element={<Navigate to="/" />} />
+              </Routes>
+            </MuiThemeWrapper>
+          </MovieProvider>
+        </ThemeProvider>
+      </AuthProvider>
     </Router>
   );
-}
+};
 
+// Component to handle protected routes
+const ProtectedRoute = ({ children }) => {
+  const { isAuthenticated } = useContext(AuthContext); // Added React import via useContext
+  
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
+};
+
+// Component to handle login page redirection if already authenticated
+const LoginPage = () => {
+  const { isAuthenticated } = useContext(AuthContext); // Added React import via useContext
+  
+  if (isAuthenticated) {
+    return <Navigate to="/" replace />;
+  }
+
+  return <Login />;
+};
+
+// Component to wrap Material-UI theme
 const MuiThemeWrapper = ({ children }) => {
-  const { darkMode } = React.useContext(ThemeContext);
+  const { darkMode } = useContext(ThemeContext); // Added React import via useContext
   
   const theme = createTheme({
     palette: {
@@ -41,6 +70,20 @@ const MuiThemeWrapper = ({ children }) => {
       secondary: {
         main: '#f50057',
       },
+    },
+    typography: {
+      fontFamily: [
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(','),
     },
   });
 

@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, CardMedia, CardContent, Typography, Rating, Box, IconButton } from '@mui/material';
+import { 
+  Card, 
+  CardMedia, 
+  CardContent, 
+  Typography, 
+  Rating, 
+  Box, 
+  IconButton,
+  Tooltip
+} from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { MovieContext } from '../context/MovieContext';
+import { tmdb } from '../services/tmdb';
 
 const MovieCard = ({ movie }) => {
   const navigate = useNavigate();
-  const { favorites, addToFavorites, removeFromFavorites } = React.useContext(MovieContext);
+  const { favorites, addToFavorites, removeFromFavorites } = useContext(MovieContext);
   const isFavorite = favorites.some(fav => fav.id === movie.id);
 
   const handleFavoriteClick = (e) => {
@@ -15,7 +25,13 @@ const MovieCard = ({ movie }) => {
     if (isFavorite) {
       removeFromFavorites(movie.id);
     } else {
-      addToFavorites(movie);
+      addToFavorites({
+        id: movie.id,
+        title: movie.title,
+        poster_path: movie.poster_path,
+        release_date: movie.release_date,
+        vote_average: movie.vote_average
+      });
     }
   };
 
@@ -27,7 +43,8 @@ const MovieCard = ({ movie }) => {
         cursor: 'pointer',
         transition: 'transform 0.2s',
         '&:hover': {
-          transform: 'scale(1.05)'
+          transform: 'scale(1.05)',
+          boxShadow: 6
         }
       }}
       onClick={() => navigate(`/movie/${movie.id}`)}
@@ -35,17 +52,20 @@ const MovieCard = ({ movie }) => {
       <CardMedia
         component="img"
         height="450"
-        image={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : '/no-poster.jpg'}
+        image={tmdb.getPosterUrl(movie.poster_path) || '/no-poster.jpg'}
         alt={movie.title}
+        sx={{ objectFit: 'cover' }}
       />
       <CardContent>
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <Typography variant="h6" component="div" noWrap>
             {movie.title}
           </Typography>
-          <IconButton onClick={handleFavoriteClick} aria-label="add to favorites">
-            {isFavorite ? <FavoriteIcon color="error" /> : <FavoriteBorderIcon />}
-          </IconButton>
+          <Tooltip title={isFavorite ? "Remove from favorites" : "Add to favorites"}>
+            <IconButton onClick={handleFavoriteClick} aria-label="favorite">
+              {isFavorite ? <FavoriteIcon color="error" /> : <FavoriteBorderIcon />}
+            </IconButton>
+          </Tooltip>
         </Box>
         <Box display="flex" justifyContent="space-between" mt={1}>
           <Typography variant="body2" color="text.secondary">
@@ -53,14 +73,14 @@ const MovieCard = ({ movie }) => {
           </Typography>
           <Box display="flex" alignItems="center">
             <Rating 
-              name="read-only" 
+              name="movie-rating" 
               value={movie.vote_average / 2} 
               precision={0.5} 
               readOnly 
               size="small"
             />
             <Typography variant="body2" ml={1}>
-              {movie.vote_average.toFixed(1)}
+              {movie.vote_average?.toFixed(1)}
             </Typography>
           </Box>
         </Box>
