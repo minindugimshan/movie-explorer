@@ -1,0 +1,27 @@
+.trending-container {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.trending-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  margin: 32px 0;
+}
+
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.error-alert {
+  margin: 16px 0;
+}
