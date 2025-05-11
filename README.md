@@ -1,7 +1,18 @@
-# Getting Started with Create React App
+# Movie Explorer – Discover Your Favorite Films
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Movie Explorer is a web application that allows users to explore trending movies, search for titles, view detailed information, and manage a list of their favorite films. It uses **The Movie Database (TMDb)** API to fetch real-time data and provides a responsive, user-friendly interface built with **React** and **Material-UI**.
 
+## Live Demo
+
+🔗 [Click here to view the live app](movie-explorer-93rg8vp9p-minindu-gimshans-projects.vercel.app)
+
+## Project Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/minindugimshan/movie-explorer.git
+cd movie-explorer
 ## Available Scripts
 
 In the project directory, you can run:
