@@ -1,24 +1,80 @@
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .login-box {
-  margin-top: 64px;
+  margin-top: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  animation: slideFadeIn 0.8s ease forwards;
 }
 
 .login-form {
-  margin-top: 8px;
+  margin-top: 16px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  animation: slideFadeIn 1s ease;
 }
 
 .login-alert {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+}
+
+.MuiTextField-root {
+  transition: all 0.3s ease;
+}
+
+.MuiInputBase-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #1976d2;
+  box-shadow: 0 0 6px rgba(25, 118, 210, 0.3);
 }
 
 .login-button {
   margin-top: 24px;
   margin-bottom: 16px;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #1976d2, #42a5f5);
+  color: white;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.login-button:hover {
+  background: linear-gradient(to right, #1565c0, #2196f3);
+  transform: scale(1.02);
+}
+
+.login-button:active {
+  transform: scale(0.98);
 }
 
 .login-footer {
   text-align: center;
+  margin-top: 8px;
+  animation: slideFadeIn 1.2s ease;
+}
+
+.login-footer a {
+  color: #1976d2;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.login-footer a:hover {
+  color: #0d47a1;
 }
