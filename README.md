@@ -11,17 +11,22 @@ Movie Explorer is a web application that allows users to explore trending movies
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/minindugimshan/movie-explorer.git
+git clone git@github.com:minindugimshan/movie-explorer.git
 cd movie-explorer
-## Available Scripts
 
-In the project directory, you can run:
+2. Install Dependencies
+npm install
 
-### `npm start`
+3. Create tmbd.js File
+You can obtain an API key by signing up at https://www.themoviedb.org and visiting https://www.themoviedb.org/settings/api.
 
-Runs the app in the development mode.\
+4. Run the App Locally
+npm start
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+## Features Implemented
+Authentication
+Simple login form with username and password input (non-persistent for demo).
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
