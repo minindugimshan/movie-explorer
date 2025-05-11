@@ -1,57 +1,113 @@
-.home-container {
-  padding-top: 32px;
-  padding-bottom: 32px;
+ .home-container {
+  padding: 3rem 1rem;
+  animation: fadeSlideUp 0.6s ease-in-out;
+}
+
+/* Fade and slide on initial load */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .home-search-box {
-  margin-bottom: 48px;
+  margin-bottom: 3rem;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .home-search-form {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .home-search-input {
-  margin-right: 16px;
+  flex: 1;
+  min-width: 250px;
 }
 
 .home-search-button {
   height: 56px;
+  min-width: 120px;
+  background: linear-gradient(135deg, #74C0FC, #4dabf7);
+  color: #fff;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(116, 192, 252, 0.3);
 }
 
-.home-error-alert {
-  margin-bottom: 32px;
+.home-search-button:hover {
+  background: linear-gradient(135deg, #4dabf7, #339af0);
+  transform: translateY(-2px);
+}
+
+.home-error-alert,
+.home-info-alert {
+  margin: 2rem 0;
+  animation: fadeIn 0.4s ease-in;
+}
+
+.home-results-header,
+.home-trending-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  animation: fadeSlideUp 0.6s ease;
+}
+
+.home-filters-chip {
+  margin-left: 1rem;
+  background-color: #228be6;
+  color: #fff;
+  font-weight: bold;
 }
 
 .home-loader-box {
   display: flex;
   justify-content: center;
-  margin: 32px 0;
+  margin: 2.5rem 0;
+  animation: fadeIn 0.5s ease-in;
 }
 
 .home-end-text {
-  margin: 32px 0;
+  margin: 2rem 0;
+  text-align: center;
+  color: #868e96;
+  font-size: 1rem;
+  font-style: italic;
+  animation: fadeIn 0.5s ease-in;
 }
 
-.home-trending-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-}
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .home-search-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-.home-results-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 24px;
-}
+  .home-search-button {
+    width: 100%;
+  }
 
-.home-filters-chip {
-  margin-left: 16px;
+  .home-results-header,
+  .home-trending-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
 }
-
-.home-info-alert {
-  margin-top: 24px;
-}
-
