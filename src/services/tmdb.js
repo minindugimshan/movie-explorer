@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = '0ebc0c8eadc497e51adcf0cfb108fd5c'; // Replace with your actual key
+const API_KEY = '0ebc0c8eadc497e51adcf0cfb108fd5c';
 const BASE_URL = 'https://api.themoviedb.org/3';
 
 // Helper function to make API requests
@@ -30,6 +30,11 @@ export const tmdb = {
   searchMovies: async (query, page = 1) => {
     return await tmdbRequest('/search/movie', { query, page });
   },
+  
+  // tmdb service
+getGenres: async () => {
+  return await tmdbRequest('/genre/movie/list');
+},
 
   // Get movie details
   getMovieDetails: async (id) => {
