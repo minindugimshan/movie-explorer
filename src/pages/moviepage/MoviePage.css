@@ -1,6 +1,18 @@
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .movie-container {
   padding-top: 32px;
   padding-bottom: 32px;
+  animation: fadeSlideIn 0.8s ease-out;
 }
 
 .loading-container {
@@ -8,14 +20,18 @@
   justify-content: center;
   align-items: center;
   min-height: 80vh;
+  animation: fadeSlideIn 0.6s ease-out;
 }
 
 .loading-text {
   margin-left: 16px;
+  font-size: 1.2rem;
+  color: #666;
 }
 
 .error-container {
   margin-top: 32px;
+  animation: fadeSlideIn 0.5s ease-out;
 }
 
 .error-alert {
@@ -24,12 +40,26 @@
 
 .back-button {
   margin-bottom: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #f0f0f0;
 }
 
 .poster-container {
   position: relative;
   overflow: hidden;
-  padding: 1rem;
+  padding: 0rem;
+  background-color: #fff;
+  border-radius: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.poster-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8);
 }
 
 .poster-image {
@@ -42,13 +72,13 @@
 
 .favorite-button {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  
+  top: 12px;
+  right: 12px;
 }
 
 .movie-header {
-  margin-bottom: 16px;
+  margin-bottom: 24px;
+  animation: fadeSlideIn 1s ease;
 }
 
 .header-bar {
@@ -60,41 +90,48 @@
 .rating-container {
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .rating-text {
   margin-left: 12px;
+  font-weight: 500;
 }
 
 .genres-container {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .genre-chip {
   margin-right: 8px;
   margin-bottom: 8px;
+  font-weight: 500;
 }
 
 .overview-title {
   margin-top: 16px;
   margin-bottom: 8px;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .overview-text {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 2rem;
 }
 
 .homepage-button {
   margin-top: 16px;
   margin-right: 16px;
+  font-weight: bold;
+  text-transform: none;
 }
 
 .trailer-divider {
-  margin-top: 32px;
-  margin-bottom: 16px;
+  margin-top: 40px;
+  margin-bottom: 24px;
 }
 
 .trailer-container {
@@ -102,8 +139,10 @@
   padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 12px;
   margin: 2rem 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  animation: fadeSlideIn 1.2s ease;
 }
 
 .trailer-iframe {
@@ -112,4 +151,5 @@
   left: 0;
   width: 100%;
   height: 100%;
+  border-radius: 12px;
 }

@@ -5,11 +5,11 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { MovieProvider } from './context/MovieContext';
 import { ThemeProvider, ThemeContext } from './context/ThemeContext';
 import { AuthContext, AuthProvider } from './context/AuthContext';
-import Home from './pages/Home';
-import MoviePage from './pages/MoviePage';
-import Favorites from './pages/Favorites';
-import Login from './pages/Login';
-import Navbar from './components/Navbar';
+import Home from './pages/home/Home';
+import MoviePage from './pages/moviepage/MoviePage';
+import Favorites from './pages/favorites/Favorites';
+import Login from './pages/login/Login';
+import Navbar from './components/navbar/Navbar';
 
 const App = () => {
   return (
